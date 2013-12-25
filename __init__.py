@@ -106,25 +106,16 @@ USAGE
     parser.add_argument(dest="rec_time",
                         help="""Duration to record in HH:MM:SS format""",
                         metavar="HH:MM:SS")
-#         parser.add_argument('-V', '--version', action='version',
-#                             version=program_version_message)
     parser.add_argument("--path", "-p", dest='paths',
                         help="""paths to folder(s) to record
                         [default: %(default)s]""", metavar="PATH",
                         nargs='?', default="output.mp3", const="blabla")
-    # Process arguments
-#         paths = None
-
     args = parser.parse_args()
     paths = args.paths
     verbose = args.verbose
     rec_time = args.rec_time
     url = args.url       
-    if verbose > 0:
-        print("Verbose mode on")
     time_limit = get_seconds(rec_time)
-    print(time_limit)
-    print("Now: {}".format(datetime.datetime.fromtimestamp(now).ctime()))
     def callback(count, blocksize, filesize):
         elapsed = time.time() - now
         if elapsed > time_limit:
